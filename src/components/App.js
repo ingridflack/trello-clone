@@ -23,7 +23,7 @@ function App() {
       <GlobalStyle />
       <Container>
         {lists.map((list) => (
-          <TrelloList title={list.title} cards={list.cards} />
+          <TrelloList key={list.id} title={list.title} cards={list.cards} />
         ))}
       </Container>
     </>

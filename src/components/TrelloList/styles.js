@@ -7,3 +7,7 @@ export const Container = styled.div`
   padding: 8px;
   margin-right: 8px;
 `;
+
+export const Title = styled.h4`
+  padding: 16px 8px;
+`;
