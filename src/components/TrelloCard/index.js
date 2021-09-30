@@ -1,13 +1,14 @@
-import { Card, Typography } from "@material-ui/core";
+import { CardContent, Typography } from "@material-ui/core";
 import React from "react";
+import { CardItem } from "./styles";
 
-function TrelloCard() {
+function TrelloCard({ text }) {
   return (
-    <div>
-      <Card>
-        <Typography gutterBottom>Word of the Day</Typography>
-      </Card>
-    </div>
+    <CardItem>
+      <CardContent>
+        <Typography gutterBottom>{text}</Typography>
+      </CardContent>
+    </CardItem>
   );
 }
 
