@@ -6,6 +6,7 @@ export const Container = styled.div`
   width: 300px;
   padding: 8px;
   margin-right: 8px;
+  height: 100%;
 `;
 
 export const Title = styled.h4`
