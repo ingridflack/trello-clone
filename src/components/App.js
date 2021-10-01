@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import styled, { createGlobalStyle } from "styled-components";
-
+import { DragDropContext } from "react-beautiful-dnd";
 import TrelloList from "./TrelloList";
 import TrelloActionButton from "./TrelloActionButton";
 
@@ -20,8 +20,10 @@ export const Container = styled.div`
 function App() {
   const lists = useSelector((state) => state.lists);
 
+  const onDragEnd = () => {};
+
   return (
-    <>
+    <DragDropContext onDragEnd={onDragEnd}>
       <GlobalStyle />
       <Container>
         {lists.map((list) => (
@@ -34,7 +36,7 @@ function App() {
         ))}
         <TrelloActionButton list />
       </Container>
-    </>
+    </DragDropContext>
   );
 }
 
