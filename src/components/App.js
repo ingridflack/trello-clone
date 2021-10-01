@@ -1,9 +1,9 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled, { createGlobalStyle } from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
 import TrelloList from "./TrelloList";
 import TrelloActionButton from "./TrelloActionButton";
-
+import { sort } from "../actions";
 const GlobalStyle = createGlobalStyle` 
  * {
    margin: 0;
@@ -19,8 +19,23 @@ export const Container = styled.div`
 
 function App() {
   const lists = useSelector((state) => state.lists);
+  const dispatch = useDispatch();
 
-  const onDragEnd = () => {};
+  const onDragEnd = (result) => {
+    const { destination, source, draggableId } = result;
+
+    if (!destination) return;
+
+    dispatch(
+      sort(
+        source.droppableId,
+        destination.droppableId,
+        source.index,
+        destination.index,
+        draggableId
+      )
+    );
+  };
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
