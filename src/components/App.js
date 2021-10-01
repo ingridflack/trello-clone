@@ -25,7 +25,12 @@ function App() {
       <GlobalStyle />
       <Container>
         {lists.map((list) => (
-          <TrelloList key={list.id} title={list.title} cards={list.cards} />
+          <TrelloList
+            listID={list.id}
+            key={list.id}
+            title={list.title}
+            cards={list.cards}
+          />
         ))}
         <TrelloActionButton list />
       </Container>

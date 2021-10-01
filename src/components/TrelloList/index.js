@@ -3,14 +3,14 @@ import TrelloActionButton from "../TrelloActionButton";
 import TrelloCard from "../TrelloCard";
 import { Container, Title } from "./styles";
 
-function TrelloList({ title, cards }) {
+function TrelloList({ title, cards, listID }) {
   return (
     <Container>
       <Title>{title}</Title>
       {cards.map((card) => (
         <TrelloCard key={card.id} text={card.text} />
       ))}
-      <TrelloActionButton card />
+      <TrelloActionButton listID={listID} />
     </Container>
   );
 }

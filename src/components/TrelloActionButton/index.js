@@ -3,10 +3,13 @@ import { useState } from "react";
 import { Icon } from "@material-ui/core";
 import { Button, Container, ButtonContainer } from "./styles";
 import TextareaAutosize from "react-textarea-autosize";
+import { useDispatch } from "react-redux";
+import { addList, addCard } from "../../actions";
 
-function TrelloActionButton({ list }) {
+function TrelloActionButton({ list, listID }) {
   const [isFormOpen, setFormIsOpen] = useState(false);
   const [textarea, setTextarea] = useState("");
+  const dispatch = useDispatch();
 
   const handleShowForm = () => {
     setFormIsOpen(true);
@@ -16,9 +19,24 @@ function TrelloActionButton({ list }) {
     setFormIsOpen(false);
   };
 
+  const handleAddList = () => {
+    if (!textarea) return;
+
+    dispatch(addList(textarea));
+    setTextarea("");
+  };
+
+  const handleAddCard = () => {
+    if (!textarea || !listID) return;
+
+    dispatch(addCard(listID, textarea));
+    setTextarea("");
+  };
+
   const handleTextareaChange = (e) => {
     setTextarea(e.target.value);
   };
+
   const renderForm = () => {
     const placeholder = list
       ? "Enter a list title..."
@@ -47,6 +65,7 @@ function TrelloActionButton({ list }) {
 
         <ButtonContainer>
           <Button
+            onMouseDown={list ? handleAddList : handleAddCard}
             variant="contained"
             style={{ color: "white", backgroundColor: "#5aac44" }}
           >
